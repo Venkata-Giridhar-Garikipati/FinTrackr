@@ -39,7 +39,7 @@ const Navbar = () => {
                                 Report
                             </Link>
 
-                            <Link to="/pay" className="hover:underline">
+                            <Link to="/payment" className="hover:underline">
                                 Pay
                             </Link>
 
