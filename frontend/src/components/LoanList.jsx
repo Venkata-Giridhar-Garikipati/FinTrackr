@@ -91,6 +91,7 @@ const LoanList = () => {
     const [minAmountFilter, setMinAmountFilter] = useState('');
     const [maxInterestRateFilter, setMaxInterestRateFilter] = useState('');
     const [lastPaymentDateFilter, setLastPaymentDateFilter] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const fetchLoans = async () => {
@@ -130,29 +131,32 @@ const LoanList = () => {
             });
         }
 
+        if (searchTerm) {
+            filtered = filtered.filter((loan) =>
+                loan.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                loan.phone.includes(searchTerm)
+            );
+        }
+
         setFilteredLoans(filtered);
-    }, [loans, interestTypeFilter, minAmountFilter, maxInterestRateFilter, lastPaymentDateFilter]);
+    }, [loans, interestTypeFilter, minAmountFilter, maxInterestRateFilter, lastPaymentDateFilter, searchTerm]);
 
     useEffect(() => {
         filterLoans();
-    }, [interestTypeFilter, minAmountFilter, maxInterestRateFilter, lastPaymentDateFilter, filterLoans]);
+    }, [interestTypeFilter, minAmountFilter, maxInterestRateFilter, lastPaymentDateFilter, searchTerm, filterLoans]);
 
     if (loading) {
         return <div className="text-center text-xl">Loading loans...</div>;
     }
 
-    if (filteredLoans.length === 0) {
-        return <div className="text-center text-xl">No loans found.</div>;
-    }
-
-
     return (
-        <div className="container m-10 px-4 py-6">
+        <div className="container px-4 py-6 m-10">
             <h2 className="text-2xl font-bold mb-6 mt-10 text-center">Loans</h2>
 
-            {/* Filter UI */}
-            <div className="mb-6 flex justify-between items-center">
-                <div className="flex space-x-4">
+            {/* Filter and Search UI */}
+            <div className="mb-6 flex flex-wrap justify-between items-center">
+                <div className="flex flex-wrap space-x-4">
+                    {/* Filter Inputs */}
                     <label className="flex items-center">
                         Interest Type:
                         <select
@@ -200,6 +204,20 @@ const LoanList = () => {
                         />
                     </label>
                 </div>
+
+                <div className="mt-4 md:mt-0">
+                    {/* Search Input */}
+                    <label className="flex items-center">
+                        Search:
+                        <input
+                            type="text"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            placeholder="Search by name or phone"
+                            className="ml-2 p-2 border border-gray-300 rounded-md"
+                        />
+                    </label>
+                </div>
             </div>
 
             {/* Loan Table */}
@@ -215,28 +233,45 @@ const LoanList = () => {
                         <th className="p-3 text-left">Dues</th>
                         <th className="p-3 text-left">Calculated Interest</th>
                         <th className="p-3 text-left">Last Payment Date</th>
-                        <th className="p-3 text-left">Next Due Date</th> 
+                        <th className="p-3 text-left">Next Due Date</th>
                         <th className="p-3 text-left">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredLoans.map((loan) => (
-                        <tr key={loan.id} className="border-b hover:bg-gray-100">
-                            <td className="p-3">{new Date(loan.date).toLocaleDateString()}</td>
-                            <td className="p-3">{loan.name}</td>
-                            <td className="p-3">{loan.phone}</td>
-                            <td className="p-3">₹{loan.amount}</td>
-                            <td className="p-3">{loan.interestType}</td>
-                            <td className="p-3">{loan.interestRate}%</td>
-                            <td className="p-3">₹{calculateRemainingDues(loan)}</td>
-                            <td className="p-3">₹{calculateCumulativeInterest(loan.amount, loan.interestRate, loan.interestType, loan.date)}</td>
-                            <td className="p-3">{getLastPaymentDate(loan.payments)}</td>
-                            <td className="p-3">
-                                {loan.status.toLowerCase() === 'closed' ? ' ': calculateNextDueDate(loan.nextDueDate, loan.interestType)}
+                    {filteredLoans.length > 0 ? (
+                        filteredLoans.map((loan) => (
+                            <tr key={loan.id} className="border-b hover:bg-gray-100">
+                                <td className="p-3">{new Date(loan.date).toLocaleDateString()}</td>
+                                <td className="p-3">{loan.name}</td>
+                                <td className="p-3">{loan.phone}</td>
+                                <td className="p-3">₹{loan.amount}</td>
+                                <td className="p-3">{loan.interestType}</td>
+                                <td className="p-3">{loan.interestRate}%</td>
+                                <td className="p-3">₹{calculateRemainingDues(loan)}</td>
+                                <td className="p-3">
+                                    ₹{calculateCumulativeInterest(
+                                        loan.amount,
+                                        loan.interestRate,
+                                        loan.interestType,
+                                        loan.date
+                                    )}
+                                </td>
+                                <td className="p-3">{getLastPaymentDate(loan.payments)}</td>
+                                <td className="p-3">
+                                    {loan.status.toLowerCase() === 'closed'
+                                        ? ' '
+                                        : calculateNextDueDate(loan.date, loan.interestType)}
+                                </td>
+                                <td className="p-3">{loan.status}</td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="11" className="text-center text-gray-500 py-4">
+                                No loans found matching your criteria.
                             </td>
-                            <td className="p-3">{loan.status}</td>
                         </tr>
-                    ))}
+                    )}
                 </tbody>
             </table>
         </div>
