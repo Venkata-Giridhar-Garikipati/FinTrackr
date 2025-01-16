@@ -88,7 +88,7 @@ const Report = () => {
     }
 
     return (
-        <div className="p-8">
+        <div className="container p-20 m-10">
             <h1 className="text-2xl font-bold mb-4">Loan Report</h1>
             <div className="border p-4 rounded mb-8">
                 <p>Total Loans: {report.totalLoans}</p>
