@@ -92,8 +92,8 @@ const Report = () => {
             <h1 className="text-2xl font-bold mb-4">Loan Report</h1>
             <div className="border p-4 rounded mb-8">
                 <p>Total Loans: {report.totalLoans}</p>
-                <p>Total Loaned: ${report.totalLoaned}</p>
-                <p>Total Paid: ${report.totalPaid}</p>
+                <p>Total Loaned: ₹{report.totalLoaned}</p>
+                <p>Total Paid: ₹{report.totalPaid}</p>
             </div>
             <button
                 onClick={handleExportCSV}
