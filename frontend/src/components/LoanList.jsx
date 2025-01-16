@@ -205,7 +205,7 @@ const LoanList = () => {
                     </label>
                 </div>
 
-                <div className="mt-4 md:mt-0">
+                <div className="mt-5 md:mt-2">
                     {/* Search Input */}
                     <label className="flex items-center">
                         Search:
@@ -214,7 +214,7 @@ const LoanList = () => {
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             placeholder="Search by name or phone"
-                            className="ml-2 p-2 border border-gray-300 rounded-md"
+                            className="ml-3 p-2 border border-gray-300 rounded-md"
                         />
                     </label>
                 </div>
