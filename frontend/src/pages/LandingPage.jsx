@@ -10,9 +10,9 @@ import {
 import { BsFacebook, BsTwitter, BsInstagram, BsLinkedin } from "react-icons/bs";
 //import { Link} from 'react-router-dom';
 import { Link } from "react-router-dom";
-
+const token = localStorage.getItem("token");
 const Navbar = () => {
-  const token = localStorage.getItem("token");
+  
   return (
     <nav className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 shadow-md fixed top-0 left-0 w-full z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -20,8 +20,10 @@ const Navbar = () => {
         <div>
           {token ? (
             <>
-              <Link to="/dashboard" className="hover:underline">
-                Dashboard
+              <Link to="/home" className="hover:underline">
+              <button className="bg-white text-blue-600 px-3 py-1 rounded-md hover:bg-gray-200 transition">
+                      Dashboard
+                    </button>
               </Link>
             </>
           ) : (
@@ -82,11 +84,25 @@ const LandingPage = () => (
         Welcome to the future of loan management! Take control of your finances
         with our intuitive and secure system.
       </p>
-      <Link to="/home">
-        <button className="bg-white text-blue-600 px-8 py-4 rounded-lg shadow-lg hover:scale-105 transition">
-          Get Started Now
-        </button>
-      </Link>
+      <div>
+        {token ? (
+          <>
+            <Link to="/home" className="hover:underline">
+              <button className="bg-white text-blue-600 px-8 py-4 rounded-lg shadow-lg hover:scale-105 transition">
+                Get Started Now
+              </button>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login">
+              <button className="bg-white text-blue-600 px-8 py-4 rounded-lg shadow-lg hover:scale-105 transition">
+                Get Started Now
+              </button>
+            </Link>
+          </>
+        )}
+      </div>
     </section>
 
     {/* Features Section */}
