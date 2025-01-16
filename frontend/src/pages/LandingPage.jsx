@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   FaMoneyBillWave,
   FaRegListAlt,
@@ -6,48 +6,64 @@ import {
   FaChartLine,
   FaBell,
   FaUserShield,
-} from 'react-icons/fa';
-import { BsFacebook, BsTwitter, BsInstagram, BsLinkedin } from 'react-icons/bs';
-import { Link} from 'react-router-dom';
+} from "react-icons/fa";
+import { BsFacebook, BsTwitter, BsInstagram, BsLinkedin } from "react-icons/bs";
+//import { Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const Navbar = () => (
-  <nav className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 shadow-md fixed top-0 left-0 w-full z-50">
-    <div className="max-w-7xl mx-auto flex justify-between items-center">
-      <h1 className="text-2xl font-bold">FinTrackr</h1>
-      <ul className="flex space-x-6">
-        <li>
-          <a href="#features" className="hover:underline">
-            Features
-          </a>
-        </li>
-        <li>
-          <a href="#benefits" className="hover:underline">
-            Benefits
-          </a>
-        </li>
-        <li>
-          <a href="#testimonials" className="hover:underline">
-            Testimonials
-          </a>
-        </li>
-        <li>
-        <Link to="/login">
-          <button className="bg-white text-blue-600 px-3 py-1 rounded-md hover:bg-gray-200 transition">
-            Login
-          </button>
-          </Link>
-        </li>
-        <li>
-        <Link to="/signup">
-          <button className="bg-purple-700 px-3 py-1 rounded-md hover:bg-purple-800 transition">
-            Signup
-          </button>
-          </Link>                          
-        </li>
-      </ul>
-    </div>
-  </nav>
-);
+const Navbar = () => {
+  const token = localStorage.getItem("token");
+  return (
+    <nav className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 shadow-md fixed top-0 left-0 w-full z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <h1 className="text-2xl font-bold">FinTrackr</h1>
+        <div>
+          {token ? (
+            <>
+              <Link to="/dashboard" className="hover:underline">
+                Dashboard
+              </Link>
+            </>
+          ) : (
+            <>
+              <ul className="flex space-x-6">
+                <li>
+                  <a href="#features" className="hover:underline">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a href="#benefits" className="hover:underline">
+                    Benefits
+                  </a>
+                </li>
+                <li>
+                  <a href="#testimonials" className="hover:underline">
+                    Testimonials
+                  </a>
+                </li>
+                <li>
+                  <Link to="/login">
+                    <button className="bg-white text-blue-600 px-3 py-1 rounded-md hover:bg-gray-200 transition">
+                      Login
+                    </button>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signup">
+                    <button className="bg-purple-700 px-3 py-1 rounded-md hover:bg-purple-800 transition">
+                      Signup
+                    </button>
+                  </Link>
+                </li>
+              </ul>
+            </>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 const LandingPage = () => (
   <div className="min-h-screen bg-gradient-to-r from-purple-100 via-pink-100 to-blue-100 text-gray-800">
@@ -63,13 +79,13 @@ const LandingPage = () => (
         Empowering Your Financial Journey
       </h1>
       <p className="text-lg mb-8 max-w-2xl">
-        Welcome to the future of loan management! Take control of your
-        finances with our intuitive and secure system.
+        Welcome to the future of loan management! Take control of your finances
+        with our intuitive and secure system.
       </p>
       <Link to="/home">
-      <button className="bg-white text-blue-600 px-8 py-4 rounded-lg shadow-lg hover:scale-105 transition">
-        Get Started Now
-      </button>
+        <button className="bg-white text-blue-600 px-8 py-4 rounded-lg shadow-lg hover:scale-105 transition">
+          Get Started Now
+        </button>
       </Link>
     </section>
 
@@ -113,7 +129,10 @@ const LandingPage = () => (
     </section>
 
     {/* Testimonials Section */}
-    <section id="testimonials" className="p-8 bg-gradient-to-r from-purple-50 to-blue-50">
+    <section
+      id="testimonials"
+      className="p-8 bg-gradient-to-r from-purple-50 to-blue-50"
+    >
       <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">
         What Our Clients Say
       </h2>
@@ -135,9 +154,7 @@ const LandingPage = () => (
 
     {/* Footer */}
     <footer className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 text-center">
-      <p className="text-sm">
-        &copy; 2025 FinTrackr. All Rights Reserved.
-      </p>
+      <p className="text-sm">&copy; 2025 FinTrackr. All Rights Reserved.</p>
       <div className="mt-4 space-x-4">
         <BsFacebook className="inline-block text-xl hover:scale-110 transition cursor-pointer" />
         <BsTwitter className="inline-block text-xl hover:scale-110 transition cursor-pointer" />
