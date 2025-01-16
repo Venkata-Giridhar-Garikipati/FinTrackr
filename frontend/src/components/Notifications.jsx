@@ -28,7 +28,7 @@ const Notifications = () => {
     };
 
     return (
-        <div className="relative ">
+        <div className="relative mt-20">
             <button className="relative bg-blue-500 text-white px-4 py-2 rounded">
                 Notifications
                 {notifications.filter((n) => !n.isRead).length > 0 && (
