@@ -106,13 +106,13 @@ const LoanPay = () => {
   };
 
   return (
-    <div>
+    <div className='m-20'>
       {feedback.message && (
         <div className={`p-4 text-white rounded ${feedback.type === 'success' ? 'bg-green-500' : 'bg-red-500'}`}>
           {feedback.message}
         </div>
       )}
-
+<div className='m-20'>
       <table className="w-full table-auto border-collapse border border-gray-300 mt-4">
         <thead>
           <tr className="bg-gray-100">
@@ -163,6 +163,7 @@ const LoanPay = () => {
           ))}
         </tbody>
       </table>
+    </div>
 
       {selectedLoan && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
