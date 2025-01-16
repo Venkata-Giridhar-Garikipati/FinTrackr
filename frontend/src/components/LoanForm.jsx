@@ -28,6 +28,8 @@ const LoanForm = () => {
     };
 
     return (
+         <div className='m-20'>
+            <h2 className='text-center  font-serif text-black-400 text-4xl '>Add Loan</h2>
         <form onSubmit={handleSubmit} className="space-y-4 p-4">
         <input
             type="date"
@@ -140,6 +142,7 @@ const LoanForm = () => {
             Add Loan
         </button>
     </form>
+             </div>
     
     );
 };
