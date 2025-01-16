@@ -74,7 +74,7 @@ const LoanEdit = () => {
 
   return (
     <div className="container mx-auto p-4 space-y-6">
-      <h2 className="text-2xl font-bold text-center text-gray-800">Loan Management</h2>
+      <h2 className="text-2xl mt-10 p-8 font-bold text-center text-gray-800">Loan Management</h2>
 
       <div className="flex flex-wrap space-x-4 mb-6 gap-4">
         <div className="w-full sm:w-1/4">
