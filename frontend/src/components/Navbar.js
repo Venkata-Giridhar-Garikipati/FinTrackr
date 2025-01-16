@@ -39,8 +39,8 @@ const Navbar = () => {
                                 Report
                             </Link>
 
-                            <Link to="/payment" className="hover:underline">
-                                Pay
+                            <Link to="/pay" className="hover:underline">
+                                Payment
                             </Link>
 
                             <Link to="/notifications" className="hover:underline">
