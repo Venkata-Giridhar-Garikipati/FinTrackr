@@ -147,8 +147,8 @@ const LoanList = () => {
 
 
     return (
-        <div className="container mx-auto px-4 py-6">
-            <h2 className="text-2xl font-bold mb-6 text-center">Loans</h2>
+        <div className="container m-10 px-4 py-6">
+            <h2 className="text-2xl font-bold mb-6 mt-10 text-center">Loans</h2>
 
             {/* Filter UI */}
             <div className="mb-6 flex justify-between items-center">
