@@ -150,7 +150,7 @@ const LoanList = () => {
     }
 
     return (
-        <div className="container px-4 py-6 m-10">
+        <div className="container px-3 py-4 mt-10">
             <h2 className="text-2xl font-bold mb-6 mt-10 text-center">Loans</h2>
 
             {/* Filter and Search UI */}
