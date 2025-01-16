@@ -112,6 +112,7 @@ const LoanPay = () => {
           {feedback.message}
         </div>
       )}
+
 <div className='m-20'>
       <table className="w-full table-auto border-collapse border border-gray-300 mt-4">
         <thead>
@@ -151,19 +152,22 @@ const LoanPay = () => {
                 </button>
               </td>
               <td className="border border-gray-300 p-2">
-                <button 
-                  onClick={() => setSelectedLoan(loan)
-                  }
-                  className="bg-green-500 text-white px-4 py-2 rounded"
-                >
-                  Add Payment
-                </button>
-              </td>
+  <button
+    onClick={() => setSelectedLoan(loan)}
+    disabled={loan.status === 'Closed'}
+    className={`px-4 py-2 rounded ${
+      loan.status === 'Closed' ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-500 text-white'
+    }`}
+  >
+    Add Payment
+  </button>
+</td>
+
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+      </div>
 
       {selectedLoan && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
