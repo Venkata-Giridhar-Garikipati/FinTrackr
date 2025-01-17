@@ -167,9 +167,24 @@ const LoanEdit = () => {
             </div>
           ))
         ) : (
-      <p className="text-center text-gray-500 text-5xl font-bold col-span-full mt-12">
-    🚫 No loans found 🚫
-  </p>
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white p-6 rounded-md shadow-lg w-full max-w-md space-y-4">
+      <h2 className="text-2xl font-bold text-red-600 text-center">No Loans Found</h2>
+      <p className="text-center text-gray-600">
+        It seems like there are no loans matching your criteria. Please try adjusting the filters or check back later.
+      </p>
+      <div className="flex justify-center">
+        <button
+          onClick={() => {
+            setFilters({ status: "", interestType: "", startDate: "", endDate: "", search: "" });
+          }}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+        >
+          Reset Filters
+        </button>
+      </div>
+    </div>
+  </div>
         )}
       </div>
 
