@@ -46,14 +46,19 @@ const LoanForm = () => {
                         { label: 'Next Due Date', type: 'date', id: 'nextDueDate', required: true },
                     ].map((input) => (
                         <div key={input.id} className="flex items-center gap-4">
-                            <label htmlFor={input.id} className="w-1/3 text-right font-medium">{input.label}</label>
+                            <label
+                                htmlFor={input.id}
+                                className="w-1/3 text-right font-medium h-10 flex items-center"
+                            >
+                                {input.label}
+                            </label>
                             <input
                                 type={input.type}
                                 id={input.id}
                                 name={input.id}
                                 placeholder={input.placeholder || ''}
                                 onChange={handleChange}
-                                className="border p-2 w-2/3 rounded"
+                                className="border p-2 w-2/3 rounded h-10"
                                 required={input.required}
                                 defaultValue={input.defaultValue || ''}
                             />
@@ -62,12 +67,17 @@ const LoanForm = () => {
 
                     {/* Dropdowns */}
                     <div className="flex items-center gap-4">
-                        <label htmlFor="interestType" className="w-1/3 text-right font-medium">Interest Type</label>
+                        <label
+                            htmlFor="interestType"
+                            className="w-1/3 text-right font-medium h-10 flex items-center"
+                        >
+                            Interest Type
+                        </label>
                         <select
                             id="interestType"
                             name="interestType"
                             onChange={handleChange}
-                            className="border p-2 w-2/3 rounded"
+                            className="border p-2 w-2/3 rounded h-10"
                             required
                         >
                             <option value="">Select Interest Type</option>
@@ -79,12 +89,17 @@ const LoanForm = () => {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <label htmlFor="status" className="w-1/3 text-right font-medium">Status</label>
+                        <label
+                            htmlFor="status"
+                            className="w-1/3 text-right font-medium h-10 flex items-center"
+                        >
+                            Status
+                        </label>
                         <select
                             id="status"
                             name="status"
                             onChange={handleChange}
-                            className="border p-2 w-2/3 rounded"
+                            className="border p-2 w-2/3 rounded h-10"
                             required
                         >
                             <option value="">Select Status</option>
