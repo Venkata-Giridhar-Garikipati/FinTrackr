@@ -167,7 +167,9 @@ const LoanEdit = () => {
             </div>
           ))
         ) : (
-      <p className="text-center text-gray-500 text-xl font-semibold col-span-full">No loans found</p>
+      <p className="text-center text-gray-500 text-2xl font-bold col-span-full mt-12">
+    🚫 No loans found 🚫
+  </p>
         )}
       </div>
 
