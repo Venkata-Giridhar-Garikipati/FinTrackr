@@ -34,7 +34,7 @@ const LoanForm = () => {
                 <h2 className="text-center font-serif text-black-400 text-4xl mb-6">Add Loan</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {[
-                        { label: 'Date', type: 'date', id: 'date', placeholder: '', required: true },
+                        { label: 'Date', type: 'date', id: 'date', required: true },
                         { label: 'Name', type: 'text', id: 'name', placeholder: 'Name', required: true },
                         { label: 'Phone', type: 'text', id: 'phone', placeholder: 'Phone', required: true },
                         { label: 'Email', type: 'email', id: 'email', placeholder: 'Email', required: true },
@@ -43,7 +43,7 @@ const LoanForm = () => {
                         { label: 'Surety', type: 'text', id: 'surety', placeholder: 'Surety', required: true },
                         { label: 'Job', type: 'text', id: 'job', placeholder: 'Job', required: true },
                         { label: 'Dues', type: 'number', id: 'dues', placeholder: 'Dues', required: true, defaultValue: 0 },
-                        { label: 'Next Due Date', type: 'date', id: 'nextDueDate', placeholder: '', required: true },
+                        { label: 'Next Due Date', type: 'date', id: 'nextDueDate', required: true },
                     ].map((input) => (
                         <div key={input.id} className="flex items-center gap-4">
                             <label htmlFor={input.id} className="w-1/3 text-right font-medium">{input.label}</label>
@@ -51,7 +51,7 @@ const LoanForm = () => {
                                 type={input.type}
                                 id={input.id}
                                 name={input.id}
-                                placeholder={input.placeholder}
+                                placeholder={input.placeholder || ''}
                                 onChange={handleChange}
                                 className="border p-2 w-2/3 rounded"
                                 required={input.required}
