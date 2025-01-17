@@ -208,7 +208,7 @@ const LoanForm = () => {
                 <img
                     src="ICONS-01.webp" // Replace with your image URL
                     alt="Loan Illustration"
-                    className="max-w-full h-full  rounded shadow-md"
+                    className="max-w-full h-100%  rounded shadow-md"
                 />
             </div>
         </div>
