@@ -12,6 +12,7 @@ import LoanPay from './components/LoanPay';
 import Report from './pages/Report';
 import Notifications from './components/Notifications';
 import LandingPage from './pages/LandingPage';
+import ProfilePage from './pages/ProfilePage';
 
 const App = () => {
     return (
@@ -29,6 +30,7 @@ const App = () => {
                 <Route path="/report" element={<Report />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/" element={<LandingPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
             </Routes>
         </Router>
     );
