@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
+const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -44,9 +45,9 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/profile', async (req, res) => {
+router.get('/profile',authMiddleware, async (req, res) => {
     try {
-        const user = await User.findOne({email}); // Find user by the ID from the token
+        const user = await User.findById(req.userId); ; // Find user by the ID from the token
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
