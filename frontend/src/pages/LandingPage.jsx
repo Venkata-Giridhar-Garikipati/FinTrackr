@@ -1,4 +1,5 @@
 import React from "react";
+import ChatPopup from "../components/Chatbot/ChatPopup";
 import {
   FaMoneyBillWave,
   FaRegListAlt,
@@ -166,7 +167,9 @@ const LandingPage = () => (
           feedback="The detailed reports have helped us identify trends and optimize our lending process. A must-have!"
         />
       </div>
+       <ChatPopup />
     </section>
+    
 
     {/* Footer */}
     <footer className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 text-center">
