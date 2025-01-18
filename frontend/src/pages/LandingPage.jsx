@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import ChatPopup from "../components/Chatbot/ChatPopup";
 import {
   FaMoneyBillWave,
@@ -13,6 +14,22 @@ import { BsFacebook, BsTwitter, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { Link } from "react-router-dom";
 const token = localStorage.getItem("token");
 const Navbar = () => {
+   const [isLogoutConfirm, setIsLogoutConfirm] = useState(false);
+    const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/');
+    };
+
+    const handleConfirmLogout = () => {
+        setIsLogoutConfirm(true);
+    };
+
+    const handleCancelLogout = () => {
+        setIsLogoutConfirm(false);
+    };
   
   return (
     <nav className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 shadow-md fixed top-0 left-0 w-full z-50">
@@ -26,6 +43,38 @@ const Navbar = () => {
                       Dashboard
                     </button>
               </Link>
+              
+                            <button
+                                onClick={handleConfirmLogout}
+                                className="bg-red-500 px-4 py-1 rounded hover:bg-red-600"
+                            >
+                                Logout
+                            </button>
+
+                            {isLogoutConfirm && (
+                                <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                                    <div className="bg-white p-8 rounded-lg shadow-xl max-w-sm mx-auto space-y-6">
+                                        <h2 className="text-xl font-semibold text-center text-gray-800">
+                                            Are you sure you want to logout?
+                                        </h2>
+                                        <div className="flex justify-evenly">
+                                            <button
+                                                onClick={handleLogout}
+                                                className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition duration-300"
+                                            >
+                                                Yes
+                                            </button>
+                                            <button
+                                                onClick={handleCancelLogout}
+                                                className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-300"
+                                            >
+                                                No
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
             </>
           ) : (
             <>
