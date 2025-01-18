@@ -12,7 +12,7 @@ const ProfilePage = () => {
         if (token) {
             // Fetch user details from the backend
             axios
-                .get('http://localhost:5000/api/user/profile', {
+                .get('https://fintrackr-backend-l72z.onrender.com/api/user/profile', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
