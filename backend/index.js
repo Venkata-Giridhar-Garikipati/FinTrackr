@@ -8,6 +8,7 @@ const userRoutes = require('./routes/userRoutes');
 const loanRoutes = require('./routes/loanRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const checkPayments = require('./utils/checkPayments');
+const chatRouter = require('./routes/chat');
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ schedule.scheduleJob('0 0 * * *', async () => {
 app.use('/api/users', userRoutes);
 app.use('/api/loans', loanRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/chat', chatRouter); 
 
 // Start Server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
