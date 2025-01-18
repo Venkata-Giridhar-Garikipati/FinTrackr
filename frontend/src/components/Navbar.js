@@ -64,7 +64,7 @@ const Navbar = () => {
                             </button>
 
                             {isLogoutConfirm && (
-                                <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                                <div className="absolute top-50 left-50 right-50 bottom-50 bg-black bg-opacity-50 flex justify-center items-center z-50">
                                     <div className="bg-white p-8 rounded-lg shadow-xl max-w-sm mx-auto space-y-6">
                                         <h2 className="text-xl font-semibold text-center text-gray-800">
                                             Are you sure you want to logout?
