@@ -10,13 +10,12 @@ import {
   FaUserShield,
 } from "react-icons/fa";
 import { BsFacebook, BsTwitter, BsInstagram, BsLinkedin } from "react-icons/bs";
-//import { Link} from 'react-router-dom';
-import { Link } from "react-router-dom";
+
 const token = localStorage.getItem("token");
 const Navbar = () => {
    const [isLogoutConfirm, setIsLogoutConfirm] = useState(false);
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
+  //  const token = localStorage.getItem('token');
 
     const handleLogout = () => {
         localStorage.removeItem('token');
