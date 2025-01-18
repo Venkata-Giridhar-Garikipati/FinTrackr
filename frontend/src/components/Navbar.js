@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+    const [isLogoutConfirm, setIsLogoutConfirm] = useState(false);
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
 
@@ -10,11 +11,19 @@ const Navbar = () => {
         navigate('/');
     };
 
+    const handleConfirmLogout = () => {
+        setIsLogoutConfirm(true);
+    };
+
+    const handleCancelLogout = () => {
+        setIsLogoutConfirm(false);
+    };
+
     return (
         <nav className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 shadow-md fixed top-0 left-0 w-full z-50">
             <div className="flex justify-between items-center">
                 <Link to="/" className="text-lg font-bold">
-                FinTrackr
+                    FinTrackr
                 </Link>
                 <div className="space-x-4">
                     {token ? (
@@ -46,14 +55,35 @@ const Navbar = () => {
                             <Link to="/notifications" className="hover:underline">
                                 Notification
                             </Link>
-                            
-                           
+
                             <button
-                                onClick={handleLogout}
+                                onClick={handleConfirmLogout}
                                 className="bg-red-500 px-4 py-1 rounded hover:bg-red-600"
                             >
                                 Logout
                             </button>
+
+                            {isLogoutConfirm && (
+                                <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                                    <div className="bg-white p-6 rounded shadow-md space-y-4">
+                                        <h2 className="text-lg font-bold">Are you sure you want to logout?</h2>
+                                        <div className="flex space-x-4">
+                                            <button
+                                                onClick={handleLogout}
+                                                className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+                                            >
+                                                Yes
+                                            </button>
+                                            <button
+                                                onClick={handleCancelLogout}
+                                                className="bg-gray-500 text-white px-4 py-1 rounded hover:bg-gray-600"
+                                            >
+                                                No
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </>
                     ) : (
                         <>
