@@ -5,6 +5,7 @@ import { FaMoneyBillWave, FaRegListAlt, FaEdit, FaChartLine, FaBell, FaUserShiel
 import { BsFacebook, BsTwitter, BsInstagram, BsLinkedin } from "react-icons/bs";
 
 const token = localStorage.getItem("token");
+
 const Navbar = () => {
   const [isLogoutConfirm, setIsLogoutConfirm] = useState(false);
   const navigate = useNavigate();
@@ -68,39 +69,21 @@ const Navbar = () => {
 
             </>
           ) : (
-            <>
-              <ul className="flex space-x-6">
-                <li>
-                  <a href="#features" className="hover:underline">
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a href="#benefits" className="hover:underline">
-                    Benefits
-                  </a>
-                </li>
-                <li>
-                  <a href="#testimonials" className="hover:underline">
-                    Testimonials
-                  </a>
-                </li>
-                <li>
-                  <Link to="/login">
-                    <button className="bg-white text-blue-600 px-3 py-1 rounded-md hover:bg-gray-200 transition">
-                      Login
-                    </button>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/signup">
-                    <button className="bg-purple-700 px-3 py-1 rounded-md hover:bg-purple-800 transition">
-                      Signup
-                    </button>
-                  </Link>
-                </li>
-              </ul>
-            </>
+            <ul className="flex space-x-6">
+              <li><a href="#features" className="hover:underline">Features</a></li>
+              <li><a href="#benefits" className="hover:underline">Benefits</a></li>
+              <li><a href="#testimonials" className="hover:underline">Testimonials</a></li>
+              <li><Link to="/login">
+                <button className="bg-white text-blue-600 px-3 py-1 rounded-md hover:bg-gray-200 transition">
+                  Login
+                </button>
+              </Link></li>
+              <li><Link to="/signup">
+                <button className="bg-purple-700 px-3 py-1 rounded-md hover:bg-purple-800 transition">
+                  Signup
+                </button>
+              </Link></li>
+            </ul>
           )}
         </div>
       </div>
@@ -110,48 +93,34 @@ const Navbar = () => {
 
 const LandingPage = () => (
   <div className="min-h-screen bg-gradient-to-r from-purple-100 via-pink-100 to-blue-100 text-gray-800">
-    {/* Navbar */}
     <Navbar />
 
     {/* Hero Section */}
-    <section
-      className="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-r from-blue-500 to-purple-600 text-white"
-      id="hero"
-    >
-      <h1 className="text-5xl font-extrabold mb-6">
-        Empowering Your Financial Journey
-      </h1>
-      <p className="text-lg mb-8 max-w-2xl">
-        Welcome to the future of loan management! Take control of your finances
-        with our intuitive and secure system.
-      </p>
+    <section className="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-r from-blue-500 to-purple-600 text-white" id="hero">
+      <h1 className="text-5xl font-extrabold mb-6">Empowering Your Financial Journey</h1>
+      <p className="text-lg mb-8 max-w-2xl">Welcome to the future of loan management! Take control of your finances with our intuitive and secure system.</p>
       <div>
         {token ? (
-          <>
-            <Link to="/home" className="hover:underline">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-lg shadow-lg hover:scale-105 transition">
-                Get Started Now
-              </button>
-            </Link>
-          </>
+          <Link to="/home" className="hover:underline">
+            <button className="bg-white text-blue-600 px-8 py-4 rounded-lg shadow-lg hover:scale-105 transition">
+              Get Started Now
+            </button>
+          </Link>
         ) : (
-          <>
-            <Link to="/login">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-lg shadow-lg hover:scale-105 transition">
-                Get Started Now
-              </button>
-            </Link>
-          </>
+          <Link to="/login">
+            <button className="bg-white text-blue-600 px-8 py-4 rounded-lg shadow-lg hover:scale-105 transition">
+              Get Started Now
+            </button>
+          </Link>
         )}
       </div>
     </section>
 
     {/* Features Section */}
     <section id="features" className="p-8 bg-white">
-      <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">
-        Features That Make a Difference
-      </h2>
+      <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">Features That Make a Difference</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Feature Cards */}
         <FeatureCard
           icon={<FaMoneyBillWave className="text-blue-500 text-5xl" />}
           title="Add New Loan Record"
@@ -186,13 +155,8 @@ const LandingPage = () => (
     </section>
 
     {/* Testimonials Section */}
-    <section
-      id="testimonials"
-      className="p-8 bg-gradient-to-r from-purple-50 to-blue-50"
-    >
-      <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">
-        What Our Clients Say
-      </h2>
+    <section id="testimonials" className="p-8 bg-gradient-to-r from-purple-50 to-blue-50">
+      <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">What Our Clients Say</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <TestimonialCard
           name="John Doe"
@@ -223,6 +187,7 @@ const LandingPage = () => (
   </div>
 );
 
+// Feature Card Component
 const FeatureCard = ({ icon, title, description }) => (
   <div className="bg-white p-6 shadow-md rounded-lg text-center transition-transform transform hover:scale-105">
     <div className="mb-4">{icon}</div>
@@ -231,6 +196,7 @@ const FeatureCard = ({ icon, title, description }) => (
   </div>
 );
 
+// Testimonial Card Component
 const TestimonialCard = ({ name, feedback }) => (
   <div className="bg-white p-6 shadow-md rounded-lg transition-transform transform hover:scale-105">
     <p className="italic mb-4 text-gray-700">"{feedback}"</p>
