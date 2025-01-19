@@ -16,7 +16,7 @@ const Chatbot = () => {
     setInput('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/chat', { message: input });
+      const response = await axios.post('https://fintrackr-backend-l72z.onrender.com/api/chat', { message: input });
       setMessages([...messages, { text: response.data.message, sender: 'bot' }]);
     } catch (error) {
       console.error('Error sending message:', error);
@@ -26,7 +26,7 @@ const Chatbot = () => {
 
   return (
     <div className="max-w-md mx-auto p-4 border border-gray-300 rounded-md">
-      <div className="max-h-[300px] overflow-y-auto mb-4">
+      <div className="max-h-[500px] overflow-y-auto mb-4">
         {messages.map((message, index) => (
           <div
             key={index}
