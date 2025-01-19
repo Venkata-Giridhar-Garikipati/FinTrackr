@@ -154,7 +154,7 @@ const LoanList = () => {
             <h2 className="text-2xl font-bold mb-6 mt-10 text-center">Loans</h2>
 
             {/* Filter and Search UI */}
-            <div className="mb-6 flex flex-wrap justify-between items-center">
+            <div className="mb-6 p-5 flex flex-wrap justify-between items-center">
                 <div className="flex flex-wrap space-x-4">
                     {/* Filter Inputs */}
                     <label className="flex items-center">
@@ -221,7 +221,7 @@ const LoanList = () => {
             </div>
 
             {/* Loan Table */}
-            <div className="p-5">
+            <div className="p-7">
             <table className="min-w-full table-auto border-collapse shadow-lg">
                 <thead>
                     <tr className="bg-gray-200">
