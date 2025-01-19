@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"; 
 import { getLoans, updateLoan, deleteLoan } from "../services/loanService";
 
 const LoanEdit = () => {
@@ -13,6 +13,7 @@ const LoanEdit = () => {
     endDate: "",
     search: "",
   });
+  const [showPopup, setShowPopup] = useState(false);
 
   // Fetch loans from the service
   const fetchLoans = async () => {
@@ -49,6 +50,10 @@ const LoanEdit = () => {
     }
 
     setFilteredLoans(result);
+
+    // Show popup only if filters are applied and no results are found
+    const filtersApplied = Object.values(filters).some((value) => value !== "");
+    setShowPopup(filtersApplied && result.length === 0);
   };
 
   useEffect(() => {
@@ -166,27 +171,30 @@ const LoanEdit = () => {
               </div>
             </div>
           ))
-        ) : (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div className="bg-white p-6 rounded-md shadow-lg w-full max-w-md space-y-4">
-      <h2 className="text-2xl font-bold text-red-600 text-center">No Loans Found</h2>
-      <p className="text-center text-gray-600">
-        It seems like there are no loans matching your criteria. Please try adjusting the filters or check back later.
-      </p>
-      <div className="flex justify-center">
-        <button
-          onClick={() => {
-            setFilters({ status: "", interestType: "", startDate: "", endDate: "", search: "" });
-          }}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-        >
-          Reset Filters
-        </button>
+        ) : null}
       </div>
-    </div>
-  </div>
-        )}
-      </div>
+
+      {/* Popup for No Results */}
+      {showPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-md shadow-lg w-full max-w-md space-y-4">
+            <h2 className="text-2xl font-bold text-red-600 text-center">No Loans Found</h2>
+            <p className="text-center text-gray-600">
+              It seems like there are no loans matching your criteria. Please try adjusting the filters or check back later.
+            </p>
+            <div className="flex justify-center">
+              <button
+                onClick={() => {
+                  setFilters({ status: "", interestType: "", startDate: "", endDate: "", search: "" });
+                }}
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+              >
+                Reset Filters
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Modal for Editing Loan */}
       {editLoan && (
