@@ -1,35 +1,27 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ChatPopup from "../components/Chatbot/ChatPopup";
-import {
-  FaMoneyBillWave,
-  FaRegListAlt,
-  FaEdit,
-  FaChartLine,
-  FaBell,
-  FaUserShield,
-} from "react-icons/fa";
+import { FaMoneyBillWave, FaRegListAlt, FaEdit, FaChartLine, FaBell, FaUserShield } from "react-icons/fa";
 import { BsFacebook, BsTwitter, BsInstagram, BsLinkedin } from "react-icons/bs";
 
 const token = localStorage.getItem("token");
 const Navbar = () => {
-   const [isLogoutConfirm, setIsLogoutConfirm] = useState(false);
-    const navigate = useNavigate();
-  //  const token = localStorage.getItem('token');
+  const [isLogoutConfirm, setIsLogoutConfirm] = useState(false);
+  const navigate = useNavigate();
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        navigate('/');
-    };
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  };
 
-    const handleConfirmLogout = () => {
-        setIsLogoutConfirm(true);
-    };
+  const handleConfirmLogout = () => {
+    setIsLogoutConfirm(true);
+  };
 
-    const handleCancelLogout = () => {
-        setIsLogoutConfirm(false);
-    };
-  
+  const handleCancelLogout = () => {
+    setIsLogoutConfirm(false);
+  };
+
   return (
     <nav className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 shadow-md fixed top-0 left-0 w-full z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -38,41 +30,41 @@ const Navbar = () => {
           {token ? (
             <>
               <Link to="/home" className="hover:underline">
-              <button className="bg-white text-blue-600 px-3 py-1 rounded-md hover:bg-gray-200 transition">
-                      Dashboard
-                    </button>
+                <button className="bg-white text-blue-600 px-3 py-1 rounded-md hover:bg-gray-200 transition">
+                  Dashboard
+                </button>
               </Link>
               
-                            <button
-                                onClick={handleConfirmLogout}
-                                className="bg-red-500 px-4 py-1 rounded hover:bg-red-600"
-                            >
-                                Logout
-                            </button>
+              <button
+                onClick={handleConfirmLogout}
+                className="bg-red-500 px-4 py-1 rounded hover:bg-red-600"
+              >
+                Logout
+              </button>
 
-                            {isLogoutConfirm && (
-                                <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                                    <div className="bg-white p-8 rounded-lg shadow-xl max-w-sm mx-auto space-y-6">
-                                        <h2 className="text-xl font-semibold text-center text-gray-800">
-                                            Are you sure you want to logout?
-                                        </h2>
-                                        <div className="flex justify-evenly">
-                                            <button
-                                                onClick={handleLogout}
-                                                className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition duration-300"
-                                            >
-                                                Yes
-                                            </button>
-                                            <button
-                                                onClick={handleCancelLogout}
-                                                className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-300"
-                                            >
-                                                No
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
+              {isLogoutConfirm && (
+                <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                  <div className="bg-white p-8 rounded-lg shadow-xl max-w-sm mx-auto space-y-6">
+                    <h2 className="text-xl font-semibold text-center text-gray-800">
+                      Are you sure you want to logout?
+                    </h2>
+                    <div className="flex justify-evenly">
+                      <button
+                        onClick={handleLogout}
+                        className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition duration-300"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        onClick={handleCancelLogout}
+                        className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-300"
+                      >
+                        No
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
 
             </>
           ) : (
@@ -215,9 +207,8 @@ const LandingPage = () => (
           feedback="The detailed reports have helped us identify trends and optimize our lending process. A must-have!"
         />
       </div>
-       <ChatPopup />
+      <ChatPopup />
     </section>
-    
 
     {/* Footer */}
     <footer className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 text-center">
