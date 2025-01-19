@@ -5,6 +5,8 @@ import axios from 'axios'; // Make sure to install axios
 const ProfilePage = () => {
     const [isLogoutConfirm, setIsLogoutConfirm] = useState(false);
     const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); // Loading state
+    const [error, setError] = useState(null); // Error state
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
 
@@ -19,9 +21,12 @@ const ProfilePage = () => {
                 })
                 .then((response) => {
                     setUser(response.data);
+                    setIsLoading(false); // Set loading to false after data is fetched
                 })
                 .catch((error) => {
                     console.error(error);
+                    setIsLoading(false); // Set loading to false in case of an error
+                    setError('Failed to load profile');
                     if (error.response && error.response.status === 401) {
                         navigate('/login'); // If token is invalid or expired, redirect to login
                     }
@@ -44,12 +49,22 @@ const ProfilePage = () => {
         setIsLogoutConfirm(false);
     };
 
+    if (isLoading) {
+        return (
+            <div className="min-h-screen bg-gray-100 flex justify-center items-center">
+                <p className="text-gray-600">Loading...</p>
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen bg-gray-100 flex justify-center items-center">
             <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-xl">
                 <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">User Profile</h2>
 
-                {user ? (
+                {error ? (
+                    <p className="text-red-500 text-center">{error}</p>
+                ) : (
                     <div className="space-y-4">
                         <div className="flex justify-between items-center">
                             <span className="font-bold text-gray-700">Name:</span>
@@ -70,8 +85,6 @@ const ProfilePage = () => {
                             </button>
                         </div>
                     </div>
-                ) : (
-                    <p className="text-gray-600">Loading...</p>
                 )}
 
                 {isLogoutConfirm && (
