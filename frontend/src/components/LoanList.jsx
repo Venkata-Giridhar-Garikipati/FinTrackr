@@ -150,7 +150,7 @@ const LoanList = () => {
     }
 
     return (
-        <div className="container px-3 py-4 mt-10">
+        <div className="container px-5 py-4 mt-10">
             <h2 className="text-2xl font-bold mb-6 mt-10 text-center">Loans</h2>
 
             {/* Filter and Search UI */}
@@ -221,6 +221,7 @@ const LoanList = () => {
             </div>
 
             {/* Loan Table */}
+            <div className="p-5">
             <table className="min-w-full table-auto border-collapse shadow-lg">
                 <thead>
                     <tr className="bg-gray-200">
@@ -274,6 +275,7 @@ const LoanList = () => {
                     )}
                 </tbody>
             </table>
+                </div>
         </div>
     );
 };
