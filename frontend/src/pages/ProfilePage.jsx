@@ -24,11 +24,20 @@ const ProfilePage = () => {
                     setIsLoading(false); // Set loading to false after data is fetched
                 })
                 .catch((error) => {
-                    console.error(error);
                     setIsLoading(false); // Set loading to false in case of an error
                     setError('Failed to load profile');
-                    if (error.response && error.response.status === 401) {
-                        navigate('/login'); // If token is invalid or expired, redirect to login
+
+                    // Enhanced error logging
+                    if (error.response) {
+                        console.error('API Error Response:', error.response);
+                        if (error.response.status === 401) {
+                            navigate('/login'); // If token is invalid or expired, redirect to login
+                        } else {
+                            setError(`Error: ${error.response.data.message || 'Unknown error'}`);
+                        }
+                    } else {
+                        console.error('Network Error:', error);
+                        setError('Network error. Please check your connection.');
                     }
                 });
         } else {
