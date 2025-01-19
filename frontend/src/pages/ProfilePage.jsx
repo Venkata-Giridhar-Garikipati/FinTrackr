@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getUserProfile } from './services/authService'; // Import the service
+import { getUserProfile } from '../services/authService'; // Import the service
+
 
 const ProfilePage = () => {
     const [isLogoutConfirm, setIsLogoutConfirm] = useState(false);
