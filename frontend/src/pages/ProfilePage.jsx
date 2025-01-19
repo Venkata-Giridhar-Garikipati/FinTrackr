@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Make sure to install axios
+import { getUserProfile } from './services/authService'; // Import the service
 
 const ProfilePage = () => {
     const [isLogoutConfirm, setIsLogoutConfirm] = useState(false);
@@ -12,15 +12,10 @@ const ProfilePage = () => {
 
     useEffect(() => {
         if (token) {
-            // Fetch user details from the backend
-            axios
-                .get('https://fintrackr-backend-l72z.onrender.com/api/user/profile', {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                })
-                .then((response) => {
-                    setUser(response.data);
+            // Fetch user details from the backend using the service
+            getUserProfile(token)
+                .then((data) => {
+                    setUser(data);
                     setIsLoading(false); // Set loading to false after data is fetched
                 })
                 .catch((error) => {
