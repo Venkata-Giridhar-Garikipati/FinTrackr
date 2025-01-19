@@ -24,20 +24,20 @@ const ProfilePage = () => {
                     setIsLoading(false); // Set loading to false after data is fetched
                 })
                 .catch((error) => {
+                    console.error('Error fetching profile:', error);
                     setIsLoading(false); // Set loading to false in case of an error
-                    setError('Failed to load profile');
-
-                    // Enhanced error logging
                     if (error.response) {
-                        console.error('API Error Response:', error.response);
-                        if (error.response.status === 401) {
-                            navigate('/login'); // If token is invalid or expired, redirect to login
-                        } else {
-                            setError(`Error: ${error.response.data.message || 'Unknown error'}`);
-                        }
+                        // Server responded with a status other than 2xx
+                        setError(`Error: ${error.response.status} - ${error.response.data.message || error.response.statusText}`);
+                    } else if (error.request) {
+                        // No response from server
+                        setError('No response from server.');
                     } else {
-                        console.error('Network Error:', error);
-                        setError('Network error. Please check your connection.');
+                        // Other errors
+                        setError('An error occurred while fetching the profile.');
+                    }
+                    if (error.response && error.response.status === 401) {
+                        navigate('/login'); // If token is invalid or expired, redirect to login
                     }
                 });
         } else {
