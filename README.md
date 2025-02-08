@@ -15,6 +15,10 @@ SENDER_EMAIL=
 
 GEMINI_API_KEY=
 
+
+
+
+
 **Overview:**
 
 The Borrower Management Website is a comprehensive, user-friendly platform designed to help administrators efficiently track and manage all aspects of borrower loan activity. Whether monitoring ongoing loan repayments or reviewing completed payment histories, the system provides real-time insights and actionable data, ensuring that users can maintain an accurate and up-to-date overview of their loan portfolios.
